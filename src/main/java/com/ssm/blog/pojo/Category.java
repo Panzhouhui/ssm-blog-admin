@@ -3,6 +3,7 @@ package com.ssm.blog.pojo;
 public class Category {
     private Integer id;
     private String name;
+    private int a;
 
     public Integer getId() {
         return id;
