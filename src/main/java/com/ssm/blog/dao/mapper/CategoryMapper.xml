@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.blog.dao.CategoryDAO">
+
+    <insert id="addCategory" parameterType="Category">
+        insert into CATEGORY(NAME)values(#{name})
+    </insert>
+
+    <resultMap id="categoryMap" type="Category">
+        <id column="ID" property="id"/>
+        <result property="name" column="NAME"/>
+    </resultMap>
+
+    <select id="getCategoryList" resultMap="categoryMap" parameterType="Category">
+        select ID,NAME from CATEGORY
+        <where>
+            <if test="id !=null"> ID=#{id}</if>
+            <if test="name !=null and name!=''">and NAME like concat('%',#{name},'%')</if>
+        </where>
+    </select>
+</mapper>
+    
